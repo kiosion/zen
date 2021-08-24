@@ -1,5 +1,4 @@
 const socket = io(`${window.location.host}`)
-
 const roomContainer = document.getElementById('room-container')
 const messageForm = document.getElementById('msgform')
 const messageInput = document.getElementById('message-input')
@@ -7,21 +6,53 @@ const usrnameForm = document.getElementById('usrnameform')
 const usrnameInput = document.getElementById('usrname-input')
 
 //get time
-function getTime() {
-    var d = new Date()
-    var hr = d.getHours()
-    var min = d.getMinutes()
-    var s = d.getSeconds()
-    if (min < 10) {
-        min = "0" + min;
+const getTime = (timestamp, format='time') => {
+    let d = new Date(timestamp)
+    let hr = ('0'.concat(d.getHours())).substr(-2);
+    let min = ('0'.concat(d.getMinutes())).substr(-2)
+    let s = ('0'.concat(d.getSeconds())).substr(-2)
+    const getWeekday = weekday => {
+      return {
+        1: 'Monday',
+        2: 'Tuesday',
+        3: 'Wednesday',
+        4: 'Thursday',
+        5: 'Friday',
+        6: 'Saturday',
+        7: 'Sunday'
+      }[weekday];
     }
-    var date = d.getDate();
-    return string = "[" + hr + ":" + min + ":" + s + "]"
+    const getMonth = month => {
+      return {
+        1: 'January',
+        2: 'February',
+        3: 'March',
+        4: 'April',
+        5: 'May',
+        6: 'June',
+        7: 'July',
+        8: 'August',
+        9: 'September',
+        10: 'October',
+        11: 'November',
+        12: 'December'
+      }[month];
+    }
+    let weekday = getWeekday(d.getDay());
+    let month = getMonth(d.getMonth());
+    let day = d.getDate();
+    let year = d.getFullYear();
+    let hours = d.getHours();
+    let minutes = ('0'.concat(d.getMinutes())).substr(-2);
+    let seconds = ('0'.concat(d.getSeconds())).substr(-2);
+
+    if (format == "time") return string = "[" + hr + ":" + min + ":" + s + "]"
+    if (format == "fulltime") return string = `${weekday}, ${day} ${month}, ${year} at ${hours}:${minutes}:${seconds}`
 }
 
 //random gen
 function randomGen() {
-    var S4 = function() {
+    let S4 = () => {
        return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
     };
     return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
@@ -34,7 +65,6 @@ function getUsrname() {
     usrnameForm.addEventListener('submit', e => {
         e.preventDefault()
         input = usrnameInput.value
-        //console.log("usrname set to: " + input)
         usrnameForm.style.display = "none";
         messageForm.style.display = "block";
         messageForm.focus();
@@ -53,11 +83,6 @@ function cleanString(stinky) {
 //if form exists and usrname is set
 if (messageForm != null) {
     const messageContainer = document.getElementById('message-container')
-    //prompt for name, eventally change to not-shitty stupid browser popup window
-    //const usrname = prompt('Enter display name:')
-
-    //var usrname = getUsrname()
-    //console.log("usrname set to: "+usrname)
 
     var usrname = ""
 
@@ -86,8 +111,10 @@ if (messageForm != null) {
         messageForm.addEventListener('submit', e => {
             e.preventDefault()
             const message = messageInput.value
-            appendChat(usrn=(`You`), msg=(`${message}`))
-            socket.emit('send-chat-message', roomName, message)
+            if (message.trim() === '') return
+            const timestamp = Date.now()
+            appendChat((timestamp), (`You`), (`${message}`))
+            socket.emit('send-chat-message', timestamp, roomName, message)
             messageInput.value = ''
         })
         //stuff
@@ -101,20 +128,26 @@ if (messageForm != null) {
         })
         socket.on('chat-message', data => {
             console.debug(`Message from ${data.usrname}: ${data.message}`)
-            appendChat(usrn=(`${data.usrname}`), (`${data.message}`))
+            appendChat((`${data.timestamp}`), (`${data.usrname}`), (`${data.message}`))
         })
         //append new msgs
         function appendMessage(msg) {
-            const messageDiv = document.createElement('div')
-            messageDiv.innerHTML = `<p><mark>${msg}</mark></p>`
-            messageContainer.append(messageDiv)
-        }
-        function appendChat(usrn, msg) {
             const mark = document.createElement('mark')
             const p = document.createElement('p')
             const messageDiv = document.createElement('div')
-            var time = getTime()
-            var id = randomGen()
+            const sdfh = document.createTextNode(`${msg}`)
+            mark.appendChild(sdfh)
+            p.appendChild(mark)
+            messageDiv.appendChild(p)
+            messageContainer.append(messageDiv)
+        }
+        function appendChat(timestamp, usrn, msg) {
+            const mark = document.createElement('mark')
+            const p = document.createElement('p')
+            const messageDiv = document.createElement('div')
+            let time = getTime((timestamp), ("time")) //render timestamp as time
+            let date = getTime((timestamp), ("fulltime")) //render timestamp as date
+            let id = randomGen()
             msg = cleanString(msg)
             const gkjj = document.createTextNode(`${time} ${usrn}: `)
             mark.appendChild(gkjj)
@@ -124,14 +157,16 @@ if (messageForm != null) {
             messageDiv.appendChild(p)
             //messageDiv.innerHTML = `<p><mark>${time} ${usrn}: </mark>${msg}</p>`
             messageDiv.setAttribute("id", `${id}`)
-            messageContainer.append(messageDiv)
+            messageDiv.setAttribute("title", `${date}`)
+            messageContainer.append(messageDiv) 
+            document.getElementById(`${id}`).focus()
         }
     }
 }
 
 //copy room link on click
 function copy(){
-    var inp =document.createElement('input');
+    let inp = document.createElement('input');
     document.body.appendChild(inp)
     inp.value = window.location.href
     inp.select();

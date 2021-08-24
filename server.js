@@ -13,21 +13,30 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 
-const rooms = { Public: { users: {} } }
+const rooms = { public: { users: {} } }
 
 app.get('/', (req, res) => {
     res.render('index', { rooms: rooms })
 })
 
+//check if valid
+
+
 app.post('/room', (req, res) => {
-    if (rooms[req.body.room] != null) {
+    if (rooms[req.body.room]) {
         return res.redirect('/')
         //tell usr that room exists
     }
+    if (req.body.room.length > 15) {
+      return res.redirect('/')
+    }
+    var pattern = /(public|http|\?|#|\\|\/)/
+    const match = pattern.test(req.body.room.toLowerCase())
+    if (match) return res.redirect('/')
     rooms[req.body.room] = { users: {} }
     res.redirect(req.body.room)
     // send msg that new room was created or smthing idk
-    io.emit('room-created', req.body.room)
+    io.emit('room-created', req.body.room)  
 })
 
 app.get('/:room', (req, res) => {
@@ -48,10 +57,10 @@ io.on('connection', socket => {
         socket.to(room).emit('user-connected', usrname)
     })
 
-    socket.on('send-chat-message', (room, message) => {
-        if (!room || !message) return
+    socket.on('send-chat-message', (timestamp, room, message) => {
+        if (!room || !message || !timestamp) return
         console.log(`New message in ${room} from '${rooms[room].users[socket.id]}': ` + message)
-        socket.to(room).emit('chat-message', { message: message, usrname: rooms[room].users[socket.id] })
+        socket.to(room).emit('chat-message', { timestamp: timestamp, usrname: rooms[room].users[socket.id], message: message })
     })
 
     socket.on('disconnect', () => {
@@ -60,7 +69,7 @@ io.on('connection', socket => {
             delete rooms[room].users[socket.id]
             //delete room if everyone leaves
             const roomFull = room.users
-            if (!roomFull & !(room == 'Public')) delete rooms[room]
+            if (!roomFull & !(room == 'public')) delete rooms[room]
         })
     })
 
