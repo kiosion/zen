@@ -22,23 +22,19 @@
             color: white;
             font-family:'Courier New', Courier, monospace;
         }
-
         html::-webkit-scrollbar {
             display: none;
         }
-
         html {
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-
         body {
             padding: 0;
             margin: 0;
             display: flex;
             justify-content: center;
         }
-
         p {
             padding-left: 2%;
             padding-right: 2%;
@@ -47,30 +43,25 @@
             color: white;
             word-wrap: word-break;
         }
-
         mark {
             font-family: 'Courier New', Courier, monospace;
             font-weight: bold;
             background-color: transparent;
             color: white;
         }
-
         a {
             cursor: pointer;
             color: white;
             text-decoration: none;
             transition: all 0.2s ease-in-out;
         }
-
         a:visited {
             color: white;
             text-decoration: none;
         }
-
         a:hover {
             text-shadow: 0 0 15px white;
         }
-
         #header {
             background: black;
             position: fixed;
@@ -80,8 +71,8 @@
             max-width: 1000px;
             width: 80%;
             display: flex;
+            text-transform: Capitalise;
         }
-
         div#topl {
             width: 100%;
             max-width: 500px;
@@ -96,7 +87,6 @@
             align-content: flex-end;
             justify-content: right;
         }
-
         #container {
             position: absolute;
             top:0; bottom: 0;
@@ -105,7 +95,6 @@
             width: 90vw;
             max-width: 1000px;
         }
-
         #message-container {
             padding-left: 4vw;
             padding-right: 4vw;
@@ -113,17 +102,14 @@
             width: 100%;
             max-width: 1000px;
         }
-
         #message-container div {
             width: 80%;
             border-bottom: 1px solid #1a1a1a;
             padding: 2px;
         }
-
         #message-container div:nth-child(2n) {
             background-color: black;
         }
-
         .send-container {
             background-color: black;
             position: fixed;
@@ -134,14 +120,12 @@
             width: 80%;
             display: flex;
         }
-
         .msgform-container {
             padding-left: 4vw;
             padding-right: 4vw;
             padding-top: 2vh;
             width: 100%;
         }
-
         .msgform-container input {
             width: 80%;
             background: transparent;
@@ -152,11 +136,9 @@
             font-family: 'Courier New', Courier, monospace;
             font-size: 12pt;
         }
-
         input:focus,select:focus,textarea:focus,button:focus {
             outline: none;
         }
-
         .msgform-container button {
             color: white;
             cursor: pointer;
@@ -169,25 +151,30 @@
             transition: all .2s ease-in-out;
             font-size: 12pt;
         }
-
         .msgform-container button:hover {
             text-shadow: 0 0 20px white;
         }
-
         #message-input {
             flex-grow: 1;
+        }
+        .noselect {
+          user-select: none;
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
         }
     </style>
 </head>
 
 <body onload="focusOnInput()">
     <div id="container">
-        <div id="header">
-            <div id="topl"><p><mark><a href="/"><span>< Back to index</span></a></mark></p></div>
-            <div id="topr"><p><mark><a onclick="navigator.clipboard.writeText(window.location.href)"><span>> Copy room link</span></a></mark></p></div>
+        <div id="header" class="noselect">
+            <div id="topl"><p><mark><a href="/"><span>< Leave</span></a></mark></p></div>
+            <div id="topr"><p><mark><a onclick="navigator.clipboard.writeText(window.location.href)"><span>> Copy link</span></a></mark></p></div>
         </div>
         <div id="message-container"></div>
-        <div class="send-container">
+        <div class="send-container noselect">
             <form id="usrnameform" class="msgform-container">
                 <input type="text" id="usrname-input" placeholder="Enter a username...">
                 <button type="submit" id="send-button">> Done</button>

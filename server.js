@@ -19,9 +19,6 @@ app.get('/', (req, res) => {
     res.render('index', { rooms: rooms })
 })
 
-//check if valid
-
-
 app.post('/room', (req, res) => {
     if (rooms[req.body.room]) {
         return res.redirect('/')
@@ -30,7 +27,7 @@ app.post('/room', (req, res) => {
     if (req.body.room.length > 15) {
       return res.redirect('/')
     }
-    var pattern = /(public|http|\?|#|\\|\/)/
+    let pattern = /(public|http|\?|#|\\|\/)/
     const match = pattern.test(req.body.room.toLowerCase())
     if (match) return res.redirect('/')
     rooms[req.body.room] = { users: {} }
@@ -51,7 +48,7 @@ server.listen(port) //listen on port
 io.on('connection', socket => {
 
     socket.on('new-user', (room, usrname) => {
-        if (!room || !usrname) return // get better error handling fuckin nerd
+        if (!room || !usrname) return // get better error handling nerd
         socket.join(room)
         rooms[room].users[socket.id] = usrname
         socket.to(room).emit('user-connected', usrname)

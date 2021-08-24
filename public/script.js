@@ -46,8 +46,11 @@ const getTime = (timestamp, format='time') => {
     let minutes = ('0'.concat(d.getMinutes())).substr(-2);
     let seconds = ('0'.concat(d.getSeconds())).substr(-2);
 
-    if (format == "time") return string = "[" + hr + ":" + min + ":" + s + "]"
-    if (format == "fulltime") return string = `${weekday}, ${day} ${month}, ${year} at ${hours}:${minutes}:${seconds}`
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    console.log(tz);
+
+    if (format == "time") return string = "[" + hr + ":" + min + "]"
+    if (format == "fulltime") return string = `${weekday}, ${day} ${month}, ${year} at ${hours}:${minutes}`
 }
 
 //random gen
@@ -128,7 +131,7 @@ if (messageForm != null) {
         })
         socket.on('chat-message', data => {
             console.debug(`Message from ${data.usrname}: ${data.message}`)
-            appendChat((`${data.timestamp}`), (`${data.usrname}`), (`${data.message}`))
+            appendChat((data.timestamp), (`${data.usrname}`), (`${data.message}`))
         })
         //append new msgs
         function appendMessage(msg) {

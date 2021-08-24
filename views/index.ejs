@@ -8,6 +8,22 @@
     <title>Zen</title>
     <script defer src="socket.io/socket.io.js"></script>
     <script defer src="script.js"></script>
+    <script>
+        input.addEventListener("change", updateClass() )}
+
+        const updateClass = {
+            let pattern = /(public|http|\?|#|\\|\/)/
+            const match = pattern.test(document.getElementById('room-input').value)
+            console.log(match)
+            if (match) {
+                document.getElementById('room-input').classList.add("disabled")
+            }
+            else {
+                document.getElementById('room-input').classList.remove("disabled")
+            }
+        }
+        
+    </script>
     <style>
         html {
             background-color: black;
@@ -61,6 +77,8 @@
         #container {
             position: absolute;
             top: 0; bottom: 0;
+            padding-left: 4vw;
+            padding-right: 4vw;
             margin: auto;
             height: 25vh;
             width: 100%;
@@ -69,13 +87,16 @@
         #room-container {
             width: 100%;
             max-width: 400px;
-            padding-bottom: 8vh;
+            padding-bottom: 4vh;
             border-bottom: 1px solid #1a1a1a
+        }
+        #room-container div {
+            padding-bottom: 2vh;
         }
         #form-container {
             white-space: nowrap;
             background-color: black;
-            padding-top: 4vh;
+            padding-top: 2vh;
             max-width: 400px;
             width: 80%;
             display: flex;
@@ -84,7 +105,7 @@
         #form {
             width: 100%;
         }
-        #form input {
+        input {
             width: 100%;
             background: transparent;
             color: white;
@@ -97,7 +118,7 @@
         input:focus,select:focus,textarea:focus,button:focus {
             outline: none;
         }
-        #form button {
+        button {
             height: 120%;
             cursor: pointer;
             background: transparent;
@@ -107,10 +128,24 @@
             text-transform: uppercase;
             transition: all .2s ease-in-out;
             font-size: 14px;
+            
+        }
+        button:hover {
+            text-shadow: 0 0 20px white;
+        }
+        .disabled {
+            cursor: not-allowed;
             text-decoration: line-through;
         }
-        #form button:hover {
+        .disabled:hover {
             text-shadow: 0 0 20px red;
+        }
+        .noselect {
+          user-select: none;
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
         }
     </style>
 </head>
@@ -119,14 +154,14 @@
     <div id="container">
         <div id="room-container">
             <% Object.keys(rooms).forEach(room => { %>
-                <div><%= room %> > <a href="/<%= room %>">Join</a></div>
+                <div class="noselect"><%= room %> > <a href="/<%= room %>">Join</a></div>
             <% }) %>
         </div>
         <div id="form-container">
             <form id="form" action="/room" method="POST">
             <!-- <form id="form" action="/room" method="POST"> -->
-                <input name="room" type="text" placeholder="Room name..." required>
-                <button type="submit" style="cursor:not-allowed">> Create</button>
+                <input id="room-input" name="room" type="text" placeholder="Room name..." required>
+                <button class="" type="submit">> Create</button>
             </form>
         </div>
     </div>
