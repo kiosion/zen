@@ -1,4 +1,4 @@
-const socket = io('http://localhost:3000')
+const socket = io(`${window.location.host}`)
 
 const roomContainer = document.getElementById('room-container')
 const messageForm = document.getElementById('msgform')
@@ -92,12 +92,15 @@ if (messageForm != null) {
         })
         //stuff
         socket.on('user-connected', usrname => {
+            console.debug(`${usrname} joined`)
             appendMessage(`${usrname} joined`)
         })
         socket.on('user-disconnected', usrname => {
+            console.debug(`${usrname} left`)
             appendMessage(`${usrname} left`)
         })
         socket.on('chat-message', data => {
+            console.debug(`Message from ${data.usrname}: ${data.message}`)
             appendChat(usrn=(`${data.usrname}`), (`${data.message}`))
         })
         //append new msgs
