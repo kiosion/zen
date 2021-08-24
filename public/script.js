@@ -6,7 +6,6 @@ const messageInput = document.getElementById('message-input')
 const usrnameForm = document.getElementById('usrnameform')
 const usrnameInput = document.getElementById('usrname-input')
 
-
 //get time
 function getTime() {
     var d = new Date()
@@ -28,6 +27,7 @@ function randomGen() {
     return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
 }
 
+//prompt for username
 function getUsrname() {
     messageForm.style.display = "none";
     usrnameForm.style.display = "block";
@@ -37,6 +37,7 @@ function getUsrname() {
         //console.log("usrname set to: " + input)
         usrnameForm.style.display = "none";
         messageForm.style.display = "block";
+        messageForm.focus();
         return input
     })
 }

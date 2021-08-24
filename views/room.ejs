@@ -11,11 +11,8 @@
     </script>
     <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script defer src="script.js"></script>
-    <script type="text/javascript">
-        function FocusOnInput()
-        {
-             document.getElementById("message-input").focus();
-        }
+    <script>
+        document.getElementById("usrname-input").focus();
     </script>
     <style>
         html {
@@ -181,7 +178,7 @@
     </style>
 </head>
 
-<body onload="FocusOnInput()"">
+<body onload="FocusOnInput()">
     <div id="container">
         <div id="header">
             <div id="topl"><p><mark><a href="/"><span>< Back to index</span></a></mark></p></div>
