@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zen</title>
+    <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script defer src="script.js"></script>
+    <style>
+        html {
+            background-color: black;
+            color: white;
+            overflow: hidden;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        body {
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        body {
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        p {
+            padding-left: 2%;
+            padding-right: 2%;
+            font-family: 'Courier New', Courier, monospace;
+            text-decoration: none;
+            color: white;
+            word-wrap: word-break;
+        }
+
+        mark {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            background-color: transparent;
+            color: white;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+        }
+
+        a:visited {
+            color: white;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-shadow: 0 0 10px white;
+        }
+        #container {
+            position: absolute;
+            top: 0; bottom: 0;
+            margin: auto;
+            height: 25vh;
+            width: 100%;
+            max-width: 400px;
+        }
+        #room-container {
+            width: 100%;
+            max-width: 400px;
+            padding-bottom: 8vh;
+            border-bottom: 1px solid #1a1a1a
+        }
+        #form-container {
+            white-space: nowrap;
+            background-color: black;
+            padding-top: 4vh;
+            max-width: 400px;
+            width: 80%;
+            display: flex;
+            
+        }
+        #form {
+            width: 100%;
+        }
+        #form input {
+            width: 100%;
+            background: transparent;
+            color: white;
+            border: none;
+            border-bottom: 1px solid #1a1a1a;
+            height: 120%;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+        }
+        input:focus,select:focus,textarea:focus,button:focus {
+            outline: none;
+        }
+        #form button {
+            height: 120%;
+            cursor: pointer;
+            background: transparent;
+            color: white;
+            border: none;
+            font-family: 'Courier New', Courier, monospace;
+            text-transform: uppercase;
+            transition: all .2s ease-in-out;
+            font-size: 14px;
+            text-decoration: line-through;
+        }
+        #form button:hover {
+            text-shadow: 0 0 10px red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="room-container">
+            <% Object.keys(rooms).forEach(room => { %>
+                <div><%= room %> > <a href="/<%= room %>">Join</a></div>
+            <% }) %>
+        </div>
+        <div id="form-container">
+            <form id="form">
+            <!-- <form id="form" action="/room" method="POST"> -->
+                <input name="room" type="text" placeholder="Room name..." required>
+                <button type="submit" style="cursor:not-allowed">> Create</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
