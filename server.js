@@ -40,15 +40,20 @@ app.get('/:room', (req, res) => {
 server.listen(port) //listen on port
 
 io.on('connection', socket => {
+
     socket.on('new-user', (room, usrname) => {
+        if (!room || !usrname) return // get better error handling fuckin nerd
         socket.join(room)
         rooms[room].users[socket.id] = usrname
         socket.to(room).emit('user-connected', usrname)
     })
+
     socket.on('send-chat-message', (room, message) => {
+        if (!room || !message) return
         console.log(`New message in ${room} from '${rooms[room].users[socket.id]}': ` + message)
         socket.to(room).emit('chat-message', { message: message, usrname: rooms[room].users[socket.id] })
     })
+
     socket.on('disconnect', () => {
         getUserRooms(socket).forEach(room => {
             socket.broadcast.emit('user-disconnected', rooms[room].users[socket.id])
@@ -58,6 +63,7 @@ io.on('connection', socket => {
             if (!roomFull & !(room == 'Public')) delete rooms[room]
         })
     })
+
 })
 
 function getUserRooms(socket) {
