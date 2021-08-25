@@ -13,11 +13,10 @@ socket.emit = function() {
 }
 
 window.addEventListener('keydown', (e) => {
-  if (messageForm.style.display === 'block') {
-    window.
-    messageInput.focus()
-  } else if (usrnameForm.style.display === 'block') {
-    usrnameInput.focus()
+  if (usrnameForm.style.display === 'block') {
+    window.activeElement !== usrnameInput && usrnameInput.focus()
+  } else if (messageForm.style.display === 'block') {
+    window.activeElement !== messageInput && messageInput.focus()
   }
 })
 
@@ -185,10 +184,10 @@ if (messageForm != null) {
       p.appendChild(sdfl)
       messageDiv.appendChild(p)
       //messageDiv.innerHTML = `<p><mark>${time} ${usrn}: </mark>${msg}</p>`
-      messageDiv.setAttribute("id", `${id}`)
-      messageDiv.setAttribute("title", `${date}`)
+      messageDiv.setAttribute("id", id)  
+      messageDiv.setAttribute("title", date)
       messageContainer.append(messageDiv)
-      document.getElementById(`${id}`).focus()
+      document.getElementById(id).scrollIntoView()
     }
   }
 

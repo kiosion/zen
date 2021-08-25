@@ -20,8 +20,8 @@ const someoverarchingclassorsmthidk = {
 
 const rooms = {
   public: {
-    users: {}, 
-    type: someoverarchingclassorsmthidk.PUBLIC 
+    users: {},
+    type: someoverarchingclassorsmthidk.PUBLIC
   },
   private: {
     users: {},
@@ -51,6 +51,7 @@ app.post('/join', (req, res) => {
 
 app.post('/create', (req, res) => {
   //gen random string for room name
+  //const generated = 
   const generated = Math.ceil((Math.random()*0xFFFFFFFFFFFF)).toString(36).split('').map((v)=>Math.round(Math.random())?v.toUpperCase():v.toLowerCase()).join('')
   rooms[generated] = { users: {} }
   res.redirect(`/${generated}`)

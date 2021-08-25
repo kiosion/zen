@@ -4,13 +4,12 @@ html {
   font-family:'Courier New', Courier, monospace;
   padding: 0;
   margin: 0;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: hidden;
 }
 html::-webkit-scrollbar {
   display: none;
-}
-html {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 }
 body {
   height: 100vh;
@@ -43,94 +42,106 @@ a:visited {
 a:hover {
   text-shadow: 0 0 15px white;
 }
-
+.toast {
+  width: fit-content;
+  margin: auto;
+  text-justify: center;
+  text-align: center;
+  top: 15px;
+}
 .container {
   height: 100vh;
   margin: auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding-left: 20vw;
-  padding-right: 20vw;
+  align-items: center;
+  justify-content: center;
+  padding-left: 30vw;
+  padding-right: 30vw;
 }
-
 .header {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding-top: 4vh;
+  padding-bottom: 2vh;
   border-bottom: 1px solid #1a1a1a;
   box-sizing: border-box;
-  text-transform: Capitalise;
+  text-transform: capitalise;
   white-space: nowrap;
 }
-
-div#topl {
+div#top {
   flex: 1;
   padding: 0;
-  align-self: flex-start;
+  align-self: center;
+  text-align: center;
 }
-
-div#topl p {
-  text-align: left;
+div#top p {
+  font-size: 24px;
+  font-weight: bold;
+  transition: all .6s ease-in-out;
+  
 }
-
-div#topr {
-  flex: 1;
-  padding: 0;
-  align-self: flex-end;
+div#top p:hover {
+  text-shadow: 0 0 12px white;
 }
-
-div#topr p {
-  text-align: right;
-}
-
-.message-container {
+.room-container {
   width: 100%;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: left;
-  padding-left: 4%;
-  padding-right: 4%;
-  flex: 1;
-  overflow-y: scroll;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
 }
-
-.message-container div {
-  width: 92%;
+.room-container div {
+  width: 80%;
+  min-height: 40px;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   padding: none;
-  border-bottom: 1px solid #1a1a1a;
+  flex-wrap: nowrap;
+  flex-flow: nowrap;
 }
-
-.message-container div:nth-child(2n) {
-  background-color: black;
+.room-container a,form {
+  white-space: nowrap;
 }
-
-.message-container p {
-  word-break: break-all;
-  padding-left: 2%;
-  padding-right: 2%;
-  color:white;
+.room-container div:nth-child(2n) {
+  border-bottom: none;
 }
-
+.room-container button {
+  align-self: flex-end;
+  justify-content: right;
+  justify-self: right;
+  margin: 0;
+  padding: 0;
+  color: white;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-family: 'Courier New', Courier, monospace;
+  transition: all .2s ease-in-out;
+  font-size: 12pt;
+  white-space: nowrap;
+}
+.room-container button:hover {
+  text-shadow: 0 0 20px white;
+}
 .send-container {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding-top: 2vh;
   padding-bottom: 4vh;
   border-top: 1px solid #1a1a1a;
   background-color: black;
 }
-
-.msgform {
+.join-form {
   flex: 1;
   display: flex;
   flex-direction: row;
@@ -141,8 +152,7 @@ div#topr p {
   padding-right: 4vw;
   padding-top: 2vh;
 }
-
-.msgform input {
+.join-form input {
   width: 90%;
   align-self: flex-start;
   padding: 0;
@@ -154,14 +164,12 @@ div#topr p {
   font-size: 12pt;
   transition: all 0.2s ease-in-out;
 }
-
-input:focus,select:focus,textarea:focus,button:focus {
+input:focus,select:focus,textarea:focus {
   outline: none;
   border-bottom: 1px solid #bbbbbb;
   box-shadow: 0 5px 7px -7px #ffffff;
 }
-
-.msgform button {
+.join-form button {
   align-self: flex-end;
   justify-content: right;
   justify-self: right;
@@ -175,11 +183,9 @@ input:focus,select:focus,textarea:focus,button:focus {
   transition: all .2s ease-in-out;
   font-size: 12pt;
 }
-
-.msgform button:hover {
+.join-form button:hover {
   text-shadow: 0 0 20px white;
 }
-
 .noselect {
   user-select: none;
   -webkit-user-select: none;

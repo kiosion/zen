@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +9,6 @@
     <script defer src="script.js"></script>
     <script>
         input.addEventListener("change", updateClass() )
-
         const updateClass = {
             const pattern = /(public|http|\?|#|\\|\/)/
             const match = pattern.test(document.getElementById('room-input').value)
@@ -22,164 +20,26 @@
                 document.getElementById('room-input').classList.remove("disabled")
             }
         }
-        
     </script>
-    <style>
-        html {
-            background-color: black;
-            color: white;
-            overflow: hidden;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        body {
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-        body {
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        p {
-            padding-left: 2%;
-            padding-right: 2%;
-            font-family: 'Courier New', Courier, monospace;
-            text-decoration: none;
-            color: white;
-            word-wrap: word-break;
-        }
-
-        mark {
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
-            background-color: transparent;
-            color: white;
-        }
-
-        a {
-            color: white;
-            text-decoration: none;
-            transition: all 0.2s ease-in-out;
-        }
-
-        a:visited {
-            color: white;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-shadow: 0 0 20px white;
-        }
-        #container {
-            position: absolute;
-            top: 0; bottom: 0;
-            padding-left: 4vw;
-            padding-right: 4vw;
-            margin: auto;
-            height: 25vh;
-            width: 100%;
-            max-width: 400px;
-        }
-        #room-container {
-            width: 100%;
-            max-width: 400px;
-            padding-bottom: 4vh;
-            border-bottom: 1px solid #1a1a1a
-        }
-        #room-container div {
-            padding-bottom: 2vh;
-        }
-        #form-container {
-            white-space: nowrap;
-            background-color: black;
-            padding-top: 2vh;
-            max-width: 400px;
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-        }
-        #join-form {
-            width: 100%;
-            display: flex;
-        }
-        #create-form {
-            width: 100%;
-            display: float;
-        }
-        input {
-            width: 100%;
-            background: transparent;
-            color: white;
-            border: none;
-            border-bottom: 1px solid #1a1a1a;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 16px;
-        }
-        input:focus,select:focus,textarea:focus,button:focus {
-            outline: none;
-        }
-        button#join-button {
-            cursor: pointer;
-            background: transparent;
-            color: white;
-            border: none;
-            font-family: 'Courier New', Courier, monospace;
-            text-transform: uppercase;
-            transition: all .2s ease-in-out;
-            font-size: 16px;
-        }
-        button#create-button {
-            cursor: pointer;
-            background: transparent;
-            color: white;
-            border: none;
-            font-family: 'Courier New', Courier, monospace;
-            transition: all .2s ease-in-out;
-            font-size: 16px;
-            padding: 0;
-        }
-        button:hover {
-            text-shadow: 0 0 20px white;
-        }
-        .disabled {
-            cursor: not-allowed;
-            text-decoration: line-through;
-        }
-        .disabled:hover {
-            text-shadow: 0 0 20px red;
-        }
-        .noselect {
-          user-select: none;
-          -webkit-user-select: none;
-          -khtml-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
 </head>
-
 <body>
-    <div id="container">
-        <div id="room-container" class="noselect">
+    <div id="container" class="container">
+        <div id="header" class="header noselect"><div id="top"><p>Zen</p></div></div>
+        <div id="room-container" class="room-container noselect">
             <% Object.keys(rooms).forEach(room => { %>
-                <div><%= room %> > <a href="/<%= room %>">Join</a></div>
+                <div><%= room %><a href="/<%= room %>">&nbsp;> Join</a></div>
             <% }) %>
-            <div><form id="create_form" action="/create" method="POST"><label>private > </label><button id="create-button" type="submit">Create private</button></form></div>
+            <div><form id="create_form" action="/create" method="POST"><label>private</label><button id="create-button" type="submit">&nbsp;> Create</button></form></div>
         </div>
-        <div id="form-container">
-            <form id="join-form" action="/join" method="POST">
+        <div id="form-container" class="send-container">
+            <form id="join-form" class="join-form" action="/join" method="POST">
                 <input id="room-input" name="room" type="text" placeholder="Room code..." required>
-                <button id="join-button" class="" type="submit">> JOIN</button>
+                <button id="join-button" class="noselect" type="submit">&nbsp;> JOIN</button>
             </form>
-            <!--<form id="create-form" action="/create" method="POST">
-                <button id="create-button" class="" type="submit">> CREATE PRIVATE</button>
-            </form>-->
         </div>
     </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
-
 </html>
