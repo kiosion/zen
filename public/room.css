@@ -1,0 +1,189 @@
+html {
+  background-color: black;
+  color: white;
+  font-family:'Courier New', Courier, monospace;
+  padding: 0;
+  margin: 0;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+body {
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+}
+p {
+  font-family: inherit;
+  text-decoration: none;
+  color: white;
+  word-wrap: word-break;
+}
+mark {
+  font-family: inherit;
+  font-weight: bold;
+  background-color: transparent;
+  color: white;
+}
+a {
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+  text-shadow: 0 0 15px white;
+}
+
+.container {
+  height: 100vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 20vw;
+  padding-right: 20vw;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 4vh;
+  border-bottom: 1px solid #1a1a1a;
+  box-sizing: border-box;
+  text-transform: Capitalise;
+  white-space: nowrap;
+}
+
+div#topl {
+  flex: 1;
+  padding: 0;
+  align-self: flex-start;
+}
+
+div#topl p {
+  text-align: left;
+}
+
+div#topr {
+  flex: 1;
+  padding: 0;
+  align-self: flex-end;
+}
+
+div#topr p {
+  text-align: right;
+}
+
+.message-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: left;
+  padding-left: 4%;
+  padding-right: 4%;
+  flex: 1;
+}
+
+.message-container div {
+  width: 92%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: none;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.message-container div:nth-child(2n) {
+  background-color: black;
+}
+
+.message-container p {
+  word-break: break-all;
+  padding-left: 2%;
+  padding-right: 2%;
+  color:white;
+}
+
+.send-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 4vh;
+  border-top: 1px solid #1a1a1a;
+  background-color: black;
+}
+
+.msgform {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  align-items: flex-start;
+  white-space: nowrap;
+  padding-left: 4vw;
+  padding-right: 4vw;
+  padding-top: 2vh;
+}
+
+.msgform input {
+  width: 89%;
+  align-self: flex-start;
+  padding: 0;
+  background: transparent;
+  color: white;
+  border: none;
+  border-bottom: 1px solid #1a1a1a;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12pt;
+  transition: all 0.2s ease-in-out;
+}
+
+input:focus,select:focus,textarea:focus,button:focus {
+  outline: none;
+  border-bottom: 1px solid #bbbbbb;
+  box-shadow: 0 4px 6px -6px #ffffff;
+}
+
+.msgform button {
+  width: 9%;
+  align-self: flex-end;
+  justify-content: right;
+  justify-self: right;
+  padding: 0;
+  color: white;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-family: 'Courier New', Courier, monospace;
+  text-transform: uppercase;
+  transition: all .2s ease-in-out;
+  font-size: 12pt;
+}
+
+.msgform button:hover {
+  text-shadow: 0 0 20px white;
+}
+
+.noselect {
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}

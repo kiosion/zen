@@ -9,10 +9,10 @@
     <script defer src="socket.io/socket.io.js"></script>
     <script defer src="script.js"></script>
     <script>
-        input.addEventListener("change", updateClass() )}
+        input.addEventListener("change", updateClass() )
 
         const updateClass = {
-            let pattern = /(public|http|\?|#|\\|\/)/
+            const pattern = /(public|http|\?|#|\\|\/)/
             const match = pattern.test(document.getElementById('room-input').value)
             console.log(match)
             if (match) {
@@ -98,12 +98,17 @@
             background-color: black;
             padding-top: 2vh;
             max-width: 400px;
-            width: 80%;
-            display: flex;
-            
-        }
-        #form {
             width: 100%;
+            display: flex;
+            flex-direction: row;
+        }
+        #join-form {
+            width: 100%;
+            display: flex;
+        }
+        #create-form {
+            width: 100%;
+            display: float;
         }
         input {
             width: 100%;
@@ -111,15 +116,13 @@
             color: white;
             border: none;
             border-bottom: 1px solid #1a1a1a;
-            height: 120%;
             font-family: 'Courier New', Courier, monospace;
-            font-size: 14px;
+            font-size: 16px;
         }
         input:focus,select:focus,textarea:focus,button:focus {
             outline: none;
         }
-        button {
-            height: 120%;
+        button#join-button {
             cursor: pointer;
             background: transparent;
             color: white;
@@ -127,8 +130,17 @@
             font-family: 'Courier New', Courier, monospace;
             text-transform: uppercase;
             transition: all .2s ease-in-out;
-            font-size: 14px;
-            
+            font-size: 16px;
+        }
+        button#create-button {
+            cursor: pointer;
+            background: transparent;
+            color: white;
+            border: none;
+            font-family: 'Courier New', Courier, monospace;
+            transition: all .2s ease-in-out;
+            font-size: 16px;
+            padding: 0;
         }
         button:hover {
             text-shadow: 0 0 20px white;
@@ -152,17 +164,20 @@
 
 <body>
     <div id="container">
-        <div id="room-container">
+        <div id="room-container" class="noselect">
             <% Object.keys(rooms).forEach(room => { %>
-                <div class="noselect"><%= room %> > <a href="/<%= room %>">Join</a></div>
+                <div><%= room %> > <a href="/<%= room %>">Join</a></div>
             <% }) %>
+            <div><form id="create_form" action="/create" method="POST"><label>private > </label><button id="create-button" type="submit">Create private</button></form></div>
         </div>
         <div id="form-container">
-            <form id="form" action="/room" method="POST">
-            <!-- <form id="form" action="/room" method="POST"> -->
-                <input id="room-input" name="room" type="text" placeholder="Room name..." required>
-                <button class="" type="submit">> Create</button>
+            <form id="join-form" action="/join" method="POST">
+                <input id="room-input" name="room" type="text" placeholder="Room code..." required>
+                <button id="join-button" class="" type="submit">> JOIN</button>
             </form>
+            <!--<form id="create-form" action="/create" method="POST">
+                <button id="create-button" class="" type="submit">> CREATE PRIVATE</button>
+            </form>-->
         </div>
     </div>
 </body>
