@@ -7,17 +7,19 @@
     <title>Zen</title>
     <script>
         const roomName = "<%= roomName %>"
+        document.title = `${roomName} - Zen`
+        window.onload = init;
+        function init() {
+          if (roomName === 'public') {
+            document.getElementById("topr").style.display = 'none';
+          }
+        }
     </script>
     <script defer src="socket.io/socket.io.js"></script>
     <script defer src="script.js"></script>
-    <script>
-        function focusOnInput() {
-            document.getElementById("usrname-input").focus();
-        }
-    </script>
     <link rel="stylesheet" type="text/css" href="room.css">
 </head>
-<body onload="focusOnInput()">
+<body>
     <div id="container" class="container">
         <div id="header" class="noselect header">
             <div id="topl"><p><mark><a href="/"><span>< Leave</span></a></mark></p></div>
@@ -26,10 +28,10 @@
         <div id="message-container" class="message-container"></div>
         <div class="send-container">
             <form id="usrnameform" class="msgform">
-                <input type="text" id="usrname-input" placeholder="Enter a username..."><button type="submit" id="send-button">> Done</button>
+                <input type="text" id="usrname-input" placeholder="Enter a username..."><button type="submit" id="send-button">&nbsp;> Done</button>
             </form>
             <form id="msgform" class="msgform">
-                <input type="text" id="message-input" placeholder="Message..." autofocus><button type="submit" id="send-button">> Send</button>
+                <input type="text" id="message-input" placeholder="Message..."><button type="submit" id="send-button">&nbsp;> Send</button>
             </form>
         </div>
     </div>

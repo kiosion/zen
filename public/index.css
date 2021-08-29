@@ -40,7 +40,7 @@ a:visited {
   text-decoration: none;
 }
 a:hover {
-  text-shadow: 0 0 15px white;
+  text-shadow: 0 0 10px white, 0 0 20px white;
 }
 .toast {
   width: fit-content;
@@ -83,9 +83,9 @@ div#top p {
   transition: all .6s ease-in-out;
   
 }
-div#top p:hover {
-  text-shadow: 0 0 12px white;
-}
+/* div#top p:hover {
+  text-shadow: 0 0 10px white, 0 0 20px white;
+} */
 .room-container {
   width: 100%;
   padding-top: 2vh;
@@ -128,7 +128,8 @@ div#top p:hover {
   white-space: nowrap;
 }
 .room-container button:hover {
-  text-shadow: 0 0 20px white;
+  color: white;
+  text-shadow: 0 0 10px white, 0 0 20px white;
 }
 .send-container {
   width: 100%;
@@ -166,8 +167,8 @@ div#top p:hover {
 }
 input:focus,select:focus,textarea:focus {
   outline: none;
-  border-bottom: 1px solid #bbbbbb;
-  box-shadow: 0 5px 7px -7px #ffffff;
+  border-bottom: 1px solid white;
+  box-shadow: 0 5px 7px -7px white, 0 5px 14px -14px white;
 }
 .join-form button {
   align-self: flex-end;
@@ -184,7 +185,8 @@ input:focus,select:focus,textarea:focus {
   font-size: 12pt;
 }
 .join-form button:hover {
-  text-shadow: 0 0 20px white;
+  color: white;
+  text-shadow: 0 0 10px white, 0 0 20px white;
 }
 .noselect {
   user-select: none;

@@ -110,6 +110,7 @@ if (messageForm != null) {
   usrnameForm.addEventListener('submit', e => {
     e.preventDefault()
     usrname = usrnameInput.value
+    usrname = usrname.trim()
     usrname = cleanString(usrname)
     //console.log("usrname set to: " + input)
     usrnameForm.style.display = "none"
@@ -118,7 +119,7 @@ if (messageForm != null) {
   })
 
   function doStuff() {
-    if (usrname == (null || "" || " " || "null" || "Null")) {
+    if (usrname == (null || "" || "null" || "Null")) {
       console.log("usrname is not set")
       setTimeout(doStuff, 1000)
       return
