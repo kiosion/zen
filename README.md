@@ -7,5 +7,5 @@ A simple node.js and socket.io web chat I made for fun. You can check out the pu
 3. Configure the server port
 4. Run start script in the project directory: `npm run start`, or `npm run start:dev` to use nodemon
 
-## Known issues
+## Known issues / features
 See [todo.md](TODO.md)
