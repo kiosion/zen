@@ -2,4 +2,8 @@
 - Display users currently in room
 - Better error handling (lol)
   - Toasts
-- Require unique usernames... create check in server.js, 'username-req' instead of 'username-set' or something
+- Account system
+  - Require unique usernames...
+    - create check in server.js, 'username-req' and check against current accts and active names, instead of 'username-set'?
+- Member lists in rooms
+- Test voice calls using socketio
