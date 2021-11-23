@@ -1,12 +1,14 @@
-# zen
-A simple node.js and socket.io web chat I made for fun. You can check out the public instance at https://zen.kio.dev/
+# Zen
+A simple node.js and socket.io web chat app.
+- Public instance > https://zen.kio.dev/
+- Project wiki > https://github.com/kiosion/zen/wiki
 
 ## Installation / usage
-1. Clone `https://github.com/kiosion/zen/` and cd into `zen/`
-2. Install node.js
-3. Install the project dependancies with `npm install --production`
-4. Configure the server port
+1. Clone `https://github.com/kiosion/zen/` and cd to `./zen/`
+2. Ensure node.js is up-to-date, or install it
+3. Install project deps with `npm install --production`
+4. Configure the server port (and any needed DNS records if using a domain)
 5. Run start script in the project directory: `npm run start`, or `npm run start:dev` to use nodemon
 
 ## Known issues / features
-See [todo.md](TODO.md)
+- See [todo.md](TODO.md)
