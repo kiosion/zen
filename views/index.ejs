@@ -26,12 +26,15 @@
 </head>
 <body>
     <div id="container" class="container">
-        <div id="header" class="header noselect"><div id="top"><p><a href="https://github.com/kiosion/zen" target="_blank">Zen</a></p></div></div>
+        <div id="header" class="header noselect">
+          <div id="top"><p>Zen</p></div>
+          <div id="top-desc"><p>A simple irc-style chat app. <br><a href="https://github.com/kiosion/zen/wiki/About" target="_blank">> ABOUT</a></p></div>
+        </div>
         <div id="room-container" class="room-container noselect">
             <% Object.keys(rooms).forEach(room => { %>
-                <div><%= room %><a href="/<%= room %>">&nbsp;> Join</a></div>
+                <div><%= room %><a href="/<%= room %>">&nbsp;> JOIN</a></div>
             <% }) %>
-            <div><form id="create_form" action="/create" method="POST"><label>private</label><button id="create-button" type="submit">&nbsp;> Create</button></form></div>
+            <div><form id="create_form" action="/create" method="POST"><label>private</label><button id="create-button" type="submit">&nbsp;> CREATE</button></form></div>
         </div>
         <div id="form-container" class="send-container">
             <form id="join-form" class="join-form" action="/join" method="POST">
