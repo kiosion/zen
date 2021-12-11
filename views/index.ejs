@@ -7,20 +7,6 @@
     <title>Zen</title>
     <script defer src="socket.io/socket.io.js"></script>
     <script defer src="room.js"></script>
-    <script>
-        input.addEventListener("change", updateClass() )
-        const updateClass = () => {
-            const pattern = /(public|http|\?|#|\\|\/)/
-            const match = pattern.test(document.getElementById('room-input').value)
-            console.log(match)
-            if (match) {
-                document.getElementById('room-input').classList.add("disabled")
-            }
-            else {
-                document.getElementById('room-input').classList.remove("disabled")
-            }
-        }
-    </script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
@@ -28,18 +14,8 @@
     <div id="container" class="container">
         <div id="header" class="header noselect">
           <!--div id="top"><p>&nbsp;_______&nbsp;_&nbsp;__&nbsp;<br>|_&nbsp;&nbsp;/&nbsp;_&nbsp;\&nbsp;'_&nbsp;\<br>&nbsp;/&nbsp;/&nbsp;&nbsp;__/&nbsp;|&nbsp;|&nbsp;|<br>/___\___|_|&nbsp;|_|<br></p></div-->
-          <div id="top"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,----,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,---,&nbsp;&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.'&nbsp;&nbsp;&nbsp;.`|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,-+-.&nbsp;/&nbsp;&nbsp;|&nbsp;<br>
-&nbsp;&nbsp;.'&nbsp;&nbsp;&nbsp;.'&nbsp;&nbsp;.'&nbsp;&nbsp;&nbsp;,---.&nbsp;&nbsp;,--.'|'&nbsp;&nbsp;&nbsp;|&nbsp;<br>
-,---,&nbsp;'&nbsp;&nbsp;&nbsp;./&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\|&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;,"'&nbsp;|&nbsp;<br>
-;&nbsp;&nbsp;&nbsp;|&nbsp;.'&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;/&nbsp;&nbsp;|&nbsp;|&nbsp;<br>
-`---'&nbsp;/&nbsp;&nbsp;;--,.&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;/&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;|&nbsp;&nbsp;|&nbsp;|&nbsp;<br>
-&nbsp;&nbsp;/&nbsp;&nbsp;/&nbsp;&nbsp;/&nbsp;.`|'&nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;&nbsp;/|&nbsp;&nbsp;&nbsp;|&nbsp;|&nbsp;&nbsp;|/&nbsp;&nbsp;<br>
-./__;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.'&nbsp;'&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;/&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;|--'&nbsp;&nbsp;&nbsp;<br>
-;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;.'&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;|/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-`---'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&nbsp;&nbsp;&nbsp;\&nbsp;&nbsp;/'---'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`----'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></div>
-          <div id="top-desc"><p>&nbsp;A simple irc-style chat app. <br><a href="https://github.com/kiosion/zen/wiki/About" target="_blank">> ABOUT</a><a href="#">>&nbsp;SIGN&nbsp;IN</a></p></div>
+          <div id="top"><p><a href="https://github.com/kiosion/zen/wiki/About" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,----,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,---,&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.'&nbsp;&nbsp;&nbsp;.`|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,-+-.&nbsp;/&nbsp;&nbsp;|&nbsp;<br>&nbsp;&nbsp;.'&nbsp;&nbsp;&nbsp;.'&nbsp;&nbsp;.'&nbsp;&nbsp;&nbsp;,---.&nbsp;&nbsp;,--.'|'&nbsp;&nbsp;&nbsp;|&nbsp;<br>,---,&nbsp;'&nbsp;&nbsp;&nbsp;./&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\|&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;,"'&nbsp;|&nbsp;<br>;&nbsp;&nbsp;&nbsp;|&nbsp;.'&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;/&nbsp;&nbsp;|&nbsp;|&nbsp;<br>`---'&nbsp;/&nbsp;&nbsp;;--,.&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;/&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;|&nbsp;&nbsp;|&nbsp;|&nbsp;<br>&nbsp;&nbsp;/&nbsp;&nbsp;/&nbsp;&nbsp;/&nbsp;.`|'&nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;&nbsp;/|&nbsp;&nbsp;&nbsp;|&nbsp;|&nbsp;&nbsp;|/&nbsp;&nbsp;<br>./__;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.'&nbsp;'&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;/&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;|--'&nbsp;&nbsp;&nbsp;<br>;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;.'&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;|/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>`---'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&nbsp;&nbsp;&nbsp;\&nbsp;&nbsp;/'---'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`----'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></p></div>
+          <div id="top-desc"><p>&nbsp;A simple irc-style chat app. <br><!--a href="https://github.com/kiosion/zen/wiki/About" target="_blank">> ABOUT</a--><a href="#">>&nbsp;SIGN&nbsp;IN</a></p></div>
         </div>
         <div id="room-container" class="room-container noselect">
             <% Object.keys(rooms).forEach(room => { %>

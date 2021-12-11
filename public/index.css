@@ -95,7 +95,15 @@ div#top p {
   color: var(--brand-color);
   letter-spacing: 96%;
   line-height: 99%;
-  text-shadow: 0 0 6px var(--brand-color);
+  text-shadow: 0 0 16px var(--brand-color);
+}
+div#top p a {
+  color: var(--brand-color);
+  text-shadow: 0 0 16px var(--brand-color);
+  transition: all .6s ease;
+}
+div#top p a:hover {
+  text-shadow: 0 0 16px var(--brand-color), 0 0 10px var(--brand-color);
 }
 div#top-desc {
   flex: 1;

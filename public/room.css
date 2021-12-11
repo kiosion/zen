@@ -70,7 +70,7 @@ a:hover {
   padding-top: 4vh;
   border-bottom: 1px solid var(--dark-accent-color);
   box-sizing: border-box;
-  text-transform: Capitalise;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 div#topl {
