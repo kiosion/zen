@@ -5,11 +5,13 @@ const messageInput = document.getElementById('message-input')
 const usrnameForm = document.getElementById('usrnameform')
 const usrnameInput = document.getElementById('usrname-input')
 
-// Mokey patch socket.emit to log all events emitted over the websocket
+// Monkey patch socket.emit to log all events emitted over the websocket
 const emit = socket.emit
 socket.emit = function() {
   emit.apply(socket, arguments)
-  console.debug(`[SOCKET] Emitted event: '${arguments[0]}'`)
+  let args = Array.from(arguments).slice()
+  args.shift()
+  console.debug(`[SOCKET] Emitted event: '${arguments[0]}'`, args)
 }
 
 window.addEventListener('keydown', (e) => {
@@ -19,6 +21,14 @@ window.addEventListener('keydown', (e) => {
     window.activeElement !== messageInput && messageInput.focus()
   }
 })
+
+// hide default html5 required form popup
+document.addEventListener('invalid', (function () {
+  return function (e) {
+    e.preventDefault();
+    document.getElementById("name").focus();
+  };
+})(), true);
 
 //get time
 const getTime = (timestamp, format = 'time') => {
@@ -151,12 +161,12 @@ if (messageForm != null) {
       console.debug(`Message from ${data.usrname}: ${data.message}`)
       appendChat((data.timestamp), (`${data.usrname}`), (`${data.message}`))
     })
-    socket.on('error', data => {
+    socket.on('server-error', data => {
+      console.debug(`Error: ${data.code} - ${data.message}`)
       if (data.errorcode == 404) {
-        console.debug(`Error: ${data.errorcode} - ${data.errormsg}`)
+        //window.location.href = `${window.location.host}?errorCode=${data.code}&errorMessage=${data.message}`
         window.location.href = window.location.host
       }
-      
     })
 
     //append new msgs

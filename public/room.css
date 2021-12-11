@@ -1,3 +1,11 @@
+:root {
+  --brand-color: #50fa7b;
+  --error-color: #ff5555;
+  --background-color: #000000;
+  --dark-accent-color: #282a36;
+  --light-accent-color: #bbbbbb;
+  --text-color: #f8f8f2;
+}
 html {
   background-color: black;
   color: white;
@@ -6,7 +14,7 @@ html {
   margin: 0;
   -ms-overflow-style: none;
   /* Non-chromium Styling */
-  scrollbar-color: chartreuse, #bbbbbb;
+  scrollbar-color: var(--brand-color), var(--light-accent-color);
   scrollbar-width: thin;
 }
 html::-webkit-scrollbar {
@@ -21,27 +29,28 @@ body {
 p {
   font-family: inherit;
   text-decoration: none;
-  color: white;
+  color: var(--text-color);
   word-wrap: word-break;
 }
 mark {
   font-family: inherit;
   font-weight: bold;
   background-color: transparent;
-  color: white;
+  color: var(--text-color);
 }
 a {
   cursor: pointer;
-  color: white;
+  color: var(--text-color);
   text-decoration: none;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.05s ease-out;
 }
 a:visited {
-  color: white;
+  color: var(--text-color);
   text-decoration: none;
 }
 a:hover {
-  text-shadow: 0 0 10px white, 0 0 20px white;
+  color: var(--brand-color);
+  text-shadow: 0 0 18px var(--brand-color);
 }
 .container {
   height: 100vh;
@@ -59,7 +68,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   padding-top: 4vh;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid var(--dark-accent-color);
   box-sizing: border-box;
   text-transform: Capitalise;
   white-space: nowrap;
@@ -91,7 +100,7 @@ div#topr p {
   flex: 1;
   overflow-y: scroll;
   /* Non-chromium Styling */
-  scrollbar-color: chartreuse, #bbbbbb;
+  scrollbar-color: var(--brand-color), var(--light-accent-color);
   scrollbar-width: thin;
 }
 .message-container::-webkit-scrollbar {
@@ -102,14 +111,14 @@ div#topr p {
   cursor: pointer;
   width: 8px;
   border-radius: 8px;
-  background-color: white;
+  background-color: var(--text-color);
   transition: all 0.2s ease-in-out;
 }
 .message-container::-webkit-scrollbar-thumb:hover {
-  background-color: chartreuse;
+  background-color: var(--brand-color);
 }
 .message-container::-webkit-scrollbar-track {
-  background: linear-gradient(90deg, black 0%, black 33%, #bbbbbb 50%, black 100%);
+  background: linear-gradient(90deg, var(--background-color) 0%, var(--background-color) 33%, var(--light-accent-color) 50%, var(--background-color) 100%);
   border-radius: 4px;
 }
 .message-container::-webkit-scrollbar-button {
@@ -121,16 +130,16 @@ div#topr p {
   flex-direction: row;
   align-items: flex-start;
   padding: none;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid var(--dark-accent-color);
 }
 .message-container div:nth-child(2n) {
-  background-color: black;
+  background-color: var(--background-color);
 }
 .message-container p {
   word-break: break-all;
   padding-left: 2%;
   padding-right: 2%;
-  color:white;
+  color:var(--text-color);
 }
 .send-container {
   width: 100%;
@@ -139,8 +148,8 @@ div#topr p {
   justify-content: center;
   align-items: center;
   padding-bottom: 4vh;
-  border-top: 1px solid #1a1a1a;
-  background-color: black;
+  border-top: 1px solid var(--dark-accent-color);
+  background-color: var(--background-color);
 }
 .msgform {
   flex: 1;
@@ -158,34 +167,35 @@ div#topr p {
   align-self: flex-start;
   padding: 0;
   background: transparent;
-  color: white;
+  color: var(--text-color);
   border: none;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid var(--dark-accent-color);
   font-family: 'Courier New', Courier, monospace;
   font-size: 12pt;
   transition: all 0.2s ease-in-out;
 }
 input:focus,select:focus,textarea:focus,button:focus {
   outline: none;
-  border-bottom: 1px solid white;
-  box-shadow: 0 5px 7px -7px white, 0 5px 14px -14px white;
+  border-bottom: 1px solid var(--text-color);
+  box-shadow: 0 5px 7px -7px var(--text-color), 0 5px 14px -14px var(--text-color);
 }
 .msgform button {
   align-self: flex-end;
   justify-content: right;
   justify-self: right;
   padding: 0;
-  color: white;
+  color: var(--text-color);
   cursor: pointer;
   background: transparent;
   border: none;
   font-family: 'Courier New', Courier, monospace;
   text-transform: uppercase;
-  transition: all .2s ease-in-out;
+  transition: all .05s ease-out;
   font-size: 12pt;
 }
 .msgform button:hover {
-  text-shadow: 0 0 10px white, 0 0 20px white;
+  color: var(--brand-color);
+  text-shadow: 0 0 18px var(--brand-color);
 }
 .noselect {
   user-select: none;

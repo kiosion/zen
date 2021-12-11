@@ -1,6 +1,15 @@
+:root {
+  --brand-color: #50fa7b;
+  --accent-color: #bd93f9;
+  --error-color: #ff5555;
+  --background-color: #000000;
+  --dark-accent-color: #282a36;
+  --light-accent-color: #bbbbbb;
+  --text-color: #f8f8f2;
+}
 html {
-  background-color: black;
-  color: white;
+  background-color: var(--background-color);
+  color: var(--text-color);
   font-family:'Courier New', Courier, monospace;
   padding: 0;
   margin: 0;
@@ -20,27 +29,28 @@ body {
 p {
   font-family: inherit;
   text-decoration: none;
-  color: white;
+  color: var(--text-color);
   word-wrap: word-break;
 }
 mark {
   font-family: inherit;
   font-weight: bold;
   background-color: transparent;
-  color: white;
+  color: var(--text-color);
 }
 a {
   cursor: pointer;
-  color: white;
+  color: var(--text-color);
   text-decoration: none;
-  transition: all 0.2s ease-in-out;
+  transition: all .05s ease-out;
 }
 a:visited {
-  color: white;
+  color: var(--text-color);
   text-decoration: none;
 }
 a:hover {
-  text-shadow: 0 0 10px white, 0 0 20px white;
+  color: var(--brand-color);
+  text-shadow: 0 0 18px var(--brand-color);
 }
 .toast {
   width: fit-content;
@@ -58,6 +68,7 @@ a:hover {
   justify-content: center;
   padding-left: 30vw;
   padding-right: 30vw;
+  max-width: 500px;
 }
 .header {
   width: 100%;
@@ -66,7 +77,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   padding-bottom: 1vh;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid var(--dark-accent-color);
   box-sizing: border-box;
   text-transform: capitalise;
   white-space: nowrap;
@@ -78,9 +89,13 @@ div#top {
   text-align: center;
 }
 div#top p {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: normal;
   margin-bottom: 1vh;
+  color: var(--brand-color);
+  letter-spacing: 96%;
+  line-height: 99%;
+  text-shadow: 0 0 6px var(--brand-color);
 }
 div#top-desc {
   flex: 1;
@@ -91,6 +106,9 @@ div#top-desc {
 div#top-desc p {
   font-weight: normal;
   line-height: 250%;
+}
+#top-desc p a {
+  margin: 0 .5rem 0 .5rem;
 }
 .room-container {
   width: 100%;
@@ -124,18 +142,18 @@ div#top-desc p {
   justify-self: right;
   margin: 0;
   padding: 0;
-  color: white;
+  color: var(--text-color);
   cursor: pointer;
   background: transparent;
   border: none;
   font-family: 'Courier New', Courier, monospace;
-  transition: all .2s ease-in-out;
+  transition: all .05s ease-out;
   font-size: 12pt;
   white-space: nowrap;
 }
 .room-container button:hover {
-  color: white;
-  text-shadow: 0 0 10px white, 0 0 20px white;
+  color: var(--brand-color);
+  text-shadow: 0 0 18px var(--brand-color);
 }
 .send-container {
   width: 100%;
@@ -145,8 +163,8 @@ div#top-desc p {
   align-items: center;
   padding-top: 2vh;
   padding-bottom: 4vh;
-  border-top: 1px solid #1a1a1a;
-  background-color: black;
+  border-top: 1px solid var(--dark-accent-color);
+  background-color: var(--background-color);
 }
 .join-form {
   flex: 1;
@@ -164,35 +182,36 @@ div#top-desc p {
   align-self: flex-start;
   padding: 0;
   background: transparent;
-  color: white;
+  color: var(--text-color);
   border: none;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid var(--dark-accent-color);
   font-family: 'Courier New', Courier, monospace;
   font-size: 12pt;
   transition: all 0.2s ease-in-out;
 }
 input:focus,select:focus,textarea:focus {
   outline: none;
-  border-bottom: 1px solid white;
-  box-shadow: 0 5px 7px -7px white, 0 5px 14px -14px white;
+  border-bottom: 1px solid var(--text-color);
+  box-shadow: 0 5px 7px -7px var(--text-color), 0 5px 14px -14px var(--text-color);
 }
 .join-form button {
   align-self: flex-end;
   justify-content: right;
   justify-self: right;
   padding: 0;
-  color: white;
+  color: var(--text-color);
   cursor: pointer;
   background: transparent;
   border: none;
+  outline: none;
   font-family: 'Courier New', Courier, monospace;
   text-transform: uppercase;
-  transition: all .2s ease-in-out;
+  transition: all .05s ease-in-out;
   font-size: 12pt;
 }
 .join-form button:hover {
-  color: white;
-  text-shadow: 0 0 10px white, 0 0 20px white;
+  color: var(--brand-color);
+  text-shadow: 0 0 18px var(--brand-color);
 }
 .noselect {
   user-select: none;
@@ -200,4 +219,11 @@ input:focus,select:focus,textarea:focus {
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+}
+
+/* --- Forgive me lord for what i'm about to do --- */
+.toastify.error {
+  color: var(--error-color);
+  background: var(--dark-accent-color);
+  box-shadow: none;
 }

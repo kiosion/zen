@@ -16,7 +16,7 @@
         }
     </script>
     <script defer src="socket.io/socket.io.js"></script>
-    <script defer src="script.js"></script>
+    <script defer src="room.js"></script>
     <link rel="stylesheet" type="text/css" href="room.css">
 </head>
 <body>
@@ -28,7 +28,7 @@
         <div id="message-container" class="message-container"></div>
         <div class="send-container">
             <form id="usrnameform" class="msgform">
-                <input type="text" id="usrname-input" placeholder="Enter a username..."><button type="submit" id="send-button">&nbsp;> Done</button>
+                <input required type="text" id="usrname-input" placeholder="Enter a username..."><button type="submit" id="send-button">&nbsp;> Done</button>
             </form>
             <form id="msgform" class="msgform">
                 <input type="text" id="message-input" placeholder="Message..."><button type="submit" id="send-button">&nbsp;> Send</button>
