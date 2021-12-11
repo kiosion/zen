@@ -1,9 +1,7 @@
-# TODO
-- Display users currently in room
-- Better error handling (lol)
-  - Toasts
+# Future Plans (TM)
+
+- Split server/client into two proccesses
 - Account system
-  - Require unique usernames...
-    - create check in server.js, 'username-req' and check against current accts and active names, instead of 'username-set'?
-- Member lists in rooms
-- Test voice calls using socketio
+  - postgres?
+- Transition to using React-app for frontend
+- Display users currently in room
