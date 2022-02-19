@@ -1,6 +1,8 @@
 <div align="center">
 <h1>Zen</h1>
-  <p>A simple socket.io web chat app. >&nbsp;<a href="https://zen.kio.dev/" target="_blank">Public instance</a> >&nbsp;<a href="https://github.com/kiosion/zen/wiki" target="_blank">Project wiki</a></p>
+  <p>A simple socket.io web chat app.</p>
+  <p><a href="https://zen.kio.dev/" target="_blank">> Public instance</a></p>
+  <p><a href="https://github.com/kiosion/zen/wiki" target="_blank">> Project wiki</a></p>
 </div>
 
 ### FEATURES
