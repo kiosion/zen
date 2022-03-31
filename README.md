@@ -1,14 +1,15 @@
 <div align="center">
 <h1>Zen</h1>
-  <p>A simple socket.io web chat app.</p>
+  <p>A simple socket.io-based web chat app.</p>
   <p><a href="https://zen.kio.dev/" target="_blank">⇒&nbsp;Public&nbsp;instance</a></p>
   <p><a href="https://github.com/kiosion/zen/wiki" target="_blank">⇒&nbsp;Project&nbsp;wiki</a></p>
 </div>
 
 ### FEATURES
-- Public room and ability to create private, single-use rooms
+- Public chat room, and ability to create private, single-use rooms
 - Set usernames
-- Timestamps for messages
+- Date/Timestamps for messages
+- Planned: Member lists, register accounts, voice rooms using webRTC
 
 ### HOST AN INSTANCE
 1. Clone using `git clone git@github.com:kiosion/zen.git` & cd into `./zen/`
