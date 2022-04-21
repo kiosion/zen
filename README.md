@@ -12,13 +12,13 @@
 - Planned: Member lists, register accounts, voice rooms using webRTC
 
 ### HOST AN INSTANCE
-1. Clone using `git clone git@github.com:kiosion/zen.git` & cd into `./zen/`
+1. Clone using `git clone git@github.com:kiosion/zen.git` & cd into `zen/`
 2. Ensure node.js is installed and updated
-3. Install project deps using `npm install --production`
-4. Configure the server port (and any needed DNS records if using a domain name)
-5. Run the startup script in the project directory
-   * `npm run start`, or
-   * `npm run start:dev` to run in dev mode with nodemon
+3. Install project deps using `npm i`
+4. Configure server port (and any needed DNS records if using a domain name)
+5. Run the build + startup scripts in the project directory
+   * `npm run build` + `npm run serve`, or
+   * `npm run dev` to run in dev mode with concurrently + nodemon
 
 ### BUGS / TODO
 - See [todo.md](TODO.md)
