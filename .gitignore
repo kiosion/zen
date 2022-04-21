@@ -1,4 +1,9 @@
-# Ignore node modules
-node_modules/
+# Node
+**/node_modules
+
+# TS
+**/dist
+
+# Repl
 .breakpoints
 .replit
