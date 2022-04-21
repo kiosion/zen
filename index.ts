@@ -17,8 +17,8 @@ const type = {
   PUBLIC: 0,
   PRIVATE: 1
 }
-
-const rooms = {
+// TODO: Convert from const to type (array for rooms, type for individual room)
+const rooms: any = {
   public: {
     users: {},
     type: type.PUBLIC
@@ -29,8 +29,9 @@ const rooms = {
   }
 }
 
-app.get('/', (req, res) => {
-  const filtered = {}
+// Express routes
+app.get('/', (req: any, res: any) => {
+  const filtered: any = {}
   Object.keys(rooms).forEach(room => {
     if (rooms[room].type === type.PUBLIC) {
       filtered[room] = rooms[room]
@@ -39,25 +40,24 @@ app.get('/', (req, res) => {
   res.render('index', { rooms: filtered })
 });
 
-app.post('/join', (req, res) => {
+app.post('/join', (req: any, res: any) => {
+  // If room exists
   if (rooms[req.body.room]) {
-    return res.redirect(`/${req.body.room}`)
-    //if room exists
+    return res.redirect(`/${req.body.room}`);
   } else {
-    //stay on index, give error
-    //return res.redirect(`/?errorCode=404&errorMessage=Invalid Room Code!`)
-    return res.redirect('/')
+    // TODO: Stay on index, create error toast
+    return res.redirect('/');
   }
 });
 
-app.post('/create', (req, res) => {
+app.post('/create', (req: any, res: any) => {
   //gen random string for room name
   const generated = Math.ceil((Math.random()*0xFFFFFFFFFFFF)).toString(36).split('').map((v)=>Math.round(Math.random())?v.toUpperCase():v.toLowerCase()).join('');
   rooms[generated] = { users: {} }
   res.redirect(`/${generated}`);
 });
 
-app.get('/:room', (req, res) => {
+app.get('/:room', (req: any, res: any) => {
   if (rooms[req.params.room] == null) {
     return res.redirect('/');
   }
@@ -66,16 +66,17 @@ app.get('/:room', (req, res) => {
 
 server.listen(port);
 
-io.on('connection', socket => {
+// Socket.io events
+io.on('connection', (socket: any) => {
 
-  socket.on('new-user', (room) => {
+  socket.on('new-user', (room: any) => {
     if (!room) return;
     socket.join(room);
     rooms[room].users[socket.id] = `tmp-${socket.id}`;
     console.log(`User connected to ${room}`);
   })
 
-  socket.on('usrname-set', (room, usrname) => {
+  socket.on('usrname-set', (room: any, usrname: string) => {
     if (!room || !usrname || (rooms[room].users[socket.id] != `tmp-${socket.id}`) || usrname == '') return;
     if (!rooms[room]) {
       socket.emit('server-error', {code: 404, message: 'Not found.'});
@@ -85,41 +86,42 @@ io.on('connection', socket => {
     rooms[room].users[socket.id] = usrname
     console.log(`${usrname} set username in ${room}`)
     socket.to(room).emit('user-connected', usrname)
-    //create room on usrname set if not exist
+    // Create room on usrname set if not exist
     if (!rooms[room]) {
-      // send msg that new room was created or smthing idk
       console.log(`Room '${room}' created`);
     }
   })
 
-  socket.on('send-chat-message', (timestamp, room, message) => {
+  socket.on('send-chat-message', (timestamp: string, room: any, message: string) => {
     if (!room || !message || !timestamp) return;
     if (!rooms[room]) {
-      socket.emit('server-error', {code: 404, message: 'Not found.'});
+      socket.emit('server-error', { code: 404, message: 'Not found.' });
       return;
     }
-    // If username is tmp
+    // If username is temporary
     if ((rooms[room]).users[socket.id] == `tmp-${socket.id}`) return;
     console.log(`New message in ${room} from '${rooms[room].users[socket.id]}': ` + message);
     socket.to(room).emit('chat-message', { timestamp: timestamp, usrname: rooms[room].users[socket.id], message: message });
   })
 
   socket.on('disconnect', () => {
-    getUserRooms(socket).forEach(room => {
+    getUserRooms(socket).forEach((room: any) => {
       if (rooms[room].users[socket.id] == `tmp-${socket.id}`) return; //if username is tmp
       //socket.broadcast.emit('user-disconnected', rooms[room].users[socket.id])
       socket.to(room).emit('user-disconnected', rooms[room].users[socket.id]);
       delete rooms[room].users[socket.id];
-      //delete room if everyone leaves
-      const roomFull = room.users;
-      if (!roomFull & !(room == 'public')) delete rooms[room];
-      console.log(`Room '${room}' deleted`);
+      console.log(`User disconnected from ${room}`);
+      if (!room.users && !(room == 'public')) {
+        delete rooms[room];
+        console.log(`Room '${room}' deleted`);
+      }
     })
   })
 })
 
-function getUserRooms(socket) {
-  return Object.entries(rooms).reduce((names, [name, room]) => {
+// TODO: Improve this reduce func, it's stinky
+function getUserRooms(socket: any) {
+  return Object.entries(rooms).reduce((names: Array<string>, [name, room]) => {
     if (room.users[socket.id] != null) names.push(name);
     return names;
   }, []);
